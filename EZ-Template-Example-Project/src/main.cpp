@@ -8,8 +8,8 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {1, 2, 3},     // Left Chassis Ports (negative port will reverse it!)
-    {-4, -5, -6},  // Right Chassis Ports (negative port will reverse it!)
+    {2, 1, 11},     // Left Chassis Ports (negative port will reverse it!)
+    {-9, -10, -20},  // Right Chassis Ports (negative port will reverse it!)
 
     //# of elements in arrays = # of motors
 
@@ -267,23 +267,34 @@ void opcontrol() {
 
     //toggle to activate
 
-    if (master.get_digital_new_press(DIGITAL_A)){
-      if (intake_on){
-        intake.move(0);
-      }
-      else{
-        intake.move(127);
-      }
-      intake_on = !intake_on;
-    }
+    //if (master.get_digital_new_press(DIGITAL_A)){
+      //if (intake_on){
+        //intake.move(0);
+      //}
+      //else{
+        //intake.move(127);
+      //}
+      //intake_on = !intake_on;
+    //}
 
     //hold down button to activate
 
-    if (master.get_digital(DIGITAL_B)){
-      motor2.move(127);
+    if (master.get_digital(DIGITAL_A)){
+      right.move(30);
+      left.move(30);
     }
     else{
-      motor2.move(-127);
+      right.move(0);
+      left.move(0);
+    } 
+
+    if(master.get_digital(DIGITAL_B)){
+      right.move(-10);
+      left.move(-10);
+    }
+    else{
+      right.move(0);
+      left.move(0);
     }
 
 
